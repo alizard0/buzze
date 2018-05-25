@@ -52,3 +52,33 @@ public generateHTML() {
    html.withNode(head).withNode(body);
 }
 ```
+
+### Index Page
+```java
+@WebServlet(name = "IndexServlet", urlPatterns = {"/index"})
+public class IndexServlet extends HttpServlet {
+
+    public IndexServlet() {
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Node html = HTMLNodes.HTML.getNewClass();
+        html.withNode(getHead());
+        html.withNode(getBody());
+        resp.getWriter().write(html.getHTMLTree());
+    }
+    
+    private Node getHead(){
+        Node head = HTMLNodes.HEAD.getNewClass();
+        // add more nodes if want to provide bootstrap or other stuff, like title and so on
+        return head;
+    }
+    
+    private Node getBody(){
+        Node body = HTMLNodes.BODY.getNewClass();
+        // add more nodes into your body like: divs, tables, paragraphs, headers and so on
+        return body;
+    }
+}
+```
