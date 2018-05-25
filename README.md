@@ -10,7 +10,7 @@ In terms of writting a micro-service, it is pretty much the same. You only need 
 Finally, the micro UI framework is basically a defined html node which contains the main attributes of a html tag, for instance: id, name, class, style and value. Therefore, you can create your own html-tags and improve the ui framework as much as you want.
 
 The major advantages are:
-* Be able to use the low-level java servlets
+* Be able to use the low-level java servlet object as is
 * WebApp or WebService is running in a dedicated tomcat
 * Don't have to setup any settings.xml file to add more servlets
 * Engine auto discovers the servlets that you created and assign them into the specific tomcat-server
