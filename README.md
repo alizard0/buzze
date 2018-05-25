@@ -1,7 +1,14 @@
 # Buzze a minimalist java web framework
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc egestas suscipit tempus. Curabitur blandit eu ligula eu ultrices. Vestibulum suscipit tellus sed mi porta porttitor. Cras justo magna, faucibus porttitor quam non, commodo luctus elit. Maecenas arcu eros, facilisis non mauris sagittis, gravida sagittis nisi. Vestibulum consectetur facilisis condimentum. Nunc dignissim gravida justo, eget molestie dui tincidunt nec. Suspendisse vehicula urna nec eros faucibus, eu vulputate sem dignissim. Etiam pretium purus eget ligula facilisis, eu tincidunt ante malesuada. Ut id egestas erat. Sed pulvinar, lorem at fringilla fermentum, massa arcu ultrices sapien, fermentum vestibulum orci risus sit amet justo. Aenean bibendum laoreet neque, quis fermentum eros elementum at.
+Buzze provides a easy way to implement web-servers or microservices in java using tomcat as a servlet-container. In order to create a server, you only have to extend the *HTTPServer* class and, when you call the parent constructor, you can pass the desired http-port, the path and the package name where your servlets classes are.
 
+Technically, the HTTPServer will automatically discover your servlets classes and register them in the tomcat embedded server and then deploy everything in a new thread. Therefore, if you create 5 classes which extend the HTTPServer, you will end up with 5 instances of tomcat running in 5 different threads. If you stop the master execution, the threads are automatically killed. 
+
+In terms of writting a micro-service, it is pretty much the same. You only need to provide a different servlet package name as the HTTPServer only manages and runs servlets. So the business rules that you write inside of these classes are not analysed by the HTTPServer.
+
+Finally, the micro UI framework is basically a defined html node which contains the main attributes of a html tag, for instance: id, name, class, style and value. Therefore, you can create your own html-tags and improve the ui framework as much as you want.
+
+## Examples
 ### Web Server
 ```java
 public class AlphaServer extends HTTPServer {
@@ -11,6 +18,7 @@ public class AlphaServer extends HTTPServer {
   }
 }
 ```
+
 ### Micro-Services
 ```java
 public class BetaServer extends HTTPServer {
@@ -20,6 +28,8 @@ public class BetaServer extends HTTPServer {
     }
 }
 ```
+
+
 ### User Interface
 ```java
 public generateHTML() {
