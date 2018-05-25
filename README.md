@@ -1,4 +1,5 @@
-# Buzze a minimalist java web framework
+# Buzze
+> a minimalist java web framework
 
 Buzze provides a easy way to implement web-servers or microservices in java using tomcat as a servlet-container. In order to create a server, you only have to extend the *HTTPServer* class and, when you call the parent constructor, you can pass the desired http-port, the path and the package name where your servlets classes are.
 
