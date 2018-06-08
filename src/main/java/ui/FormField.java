@@ -7,13 +7,29 @@ import static util.CheckUtil.isNotNull;
 public class FormField {
     private String label;
     private String value;
+    private String clazz;
     private FormFieldTypes type;
     private String tag = "input";
     private Map<String, String> attr;
 
     public Node getNode() {
-        return new Node(tag, value, "", type.getType(), attr);
+        Node div = Bootstrap.div.getNewClass();
+        div.setClazz("form-group");
+        if (type != FormFieldTypes.submit) {
+            Node labelNode = new Node("label");
+            labelNode.setValue(label);
+            div.withNode(labelNode);
+        }
+        div.withNode(new Node(tag, value, clazz, type.getType(), attr));
+        return div;
     }
+
+    public FormField withClazz(final String clazz){
+        isNotNull(clazz);
+        this.clazz = clazz;
+        return this;
+    }
+
 
     public String getLabel() {
         return label;
@@ -39,7 +55,7 @@ public class FormField {
         return type;
     }
 
-    public FormField setType(final FormFieldTypes type) {
+    public FormField withType(final FormFieldTypes type) {
         isNotNull(type);
         this.type = type;
         return this;

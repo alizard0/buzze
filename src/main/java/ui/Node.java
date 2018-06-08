@@ -49,6 +49,7 @@ public class Node {
         if (name != null && name.length() > 0) tagAux += " name='" + name + "'";
         if (clazz != null && clazz.length() > 0) tagAux += " class='" + clazz + "'";
         if (style != null && style.length() > 0) tagAux += " style='" + style + "'";
+        if (type != null && type.length() > 0) tagAux += " type='" + type + "'";
         if (attr != null && attr.size() > 0) {
             for (String attribute : attr.keySet()) {
                 tagAux += " " + attribute + "='" + attr.get(attribute) + "'";
