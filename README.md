@@ -57,7 +57,8 @@ public class SecureApiServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SimpleTokenAuth auth = new SimpleTokenAuth();
+        Datasource ds = new YourDatasourceImpl();
+        SimpleTokenAuth auth = new SimpleTokenAuth(ds);
         String token = req.getHeader("X-AUTH-TOKEN");
         if(aux.isTokenValid(token)){
             IndexPage page = new IndexPage();
@@ -72,7 +73,8 @@ public class SecureApiServlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SimpleTokenAuth auth = new SimpleTokenAuth();
+        Datasource ds = new YourDatasourceImpl();
+        SimpleTokenAuth auth = new SimpleTokenAuth(ds);
         // get email and password from req
         String token = aux.login(email, password);
         if(token != null){
