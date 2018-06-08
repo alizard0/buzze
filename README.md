@@ -40,6 +40,38 @@ public class BetaServer extends HTTPServer {
 }
 ```
 
+### Simple Token Authentication Mechanism
+```java
+public class GammaServer extends HTTPServer {
+    public BetaServer() {
+        // port, path, servlets-package 
+        super(Optional.of("9999"), Optional.of("/s/api"), Optional.of("apis"));
+    }
+}
+
+@WebServlet(name = "SecureApiServlet", urlPatterns = {"/secure/api"})
+public class SecureApiServlet extends HttpServlet {
+
+    public SecureApiServlet() {
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        SimpleTokenAuth auth = new SimpleTokenAuth();
+        String token = req.
+        if(aux.isTokenValid()){
+            IndexPage page = new IndexPage();
+            page.setNavbar(yourNavbar);
+            page.setBody(yourBody);
+            return page.getHTML();
+        } else {
+            ErrorPage page = new ErrorPage();
+            return page.getHTML();
+        }
+    }
+}
+
+```
 
 ### User Interface
 ```java
