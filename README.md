@@ -52,9 +52,20 @@ public generateHTML() {
    body.withNode(p);
    html.withNode(head).withNode(body);
 }
+
+public Node getNavbar(){
+    NavbarFactory factory = new NavbarFactory("MyFirstWebsite", 
+    new Pair<>("Home", "#"), new Pair<>("About", "/about"), new Pair<>("Contacts", "/contacts"));
+    return factory.getNavbar();
+}
+
+public Node panel(){
+    PanelFactory factory = new PanelFactory(50,50);
+    return factory.getPanel();
+}
 ```
 
-### Index Page
+### Index Servlet/Page
 ```java
 @WebServlet(name = "IndexServlet", urlPatterns = {"/index"})
 public class IndexServlet extends HttpServlet {
@@ -64,22 +75,30 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Node html = HTMLNodes.HTML.getNewClass();
-        html.withNode(getHead());
-        html.withNode(getBody());
-        resp.getWriter().write(html.getHTMLTree());
+        IndexPage page = new IndexPage();
+        page.setNavbar(yourNavbar);
+        page.setBody(yourBody);
+        return page.getHTML();
+    }
+}
+
+public class IndexPage{
+    private Node html;
+    
+    public IndexPage(){
+        this.html = Bootstrap.html.getNewClass();
     }
     
-    private Node getHead(){
-        Node head = HTMLNodes.HEAD.getNewClass();
-        // add more nodes if want to provide bootstrap or other stuff, like title and so on
-        return head;
+    public void setNavbar(Node navbar){
+        html.withNode(navbar);
     }
     
-    private Node getBody(){
-        Node body = HTMLNodes.BODY.getNewClass();
-        // add more nodes into your body like: divs, tables, paragraphs, headers and so on
-        return body;
+    public void setBody(Node body){
+        html.withNode(body);
+    }
+    
+    public String getHTML(){
+        return html.generateHTML();
     }
 }
 ```
