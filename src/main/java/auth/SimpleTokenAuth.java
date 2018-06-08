@@ -4,10 +4,10 @@ import java.security.NoSuchAlgorithmException;
 
 import static util.AuthUtil.hash;
 
-public class BasicTokenAuth {
+public class SimpleTokenAuth {
     private Datasource ds;
 
-    public BasicTokenAuth(final Datasource ds) {
+    public SimpleTokenAuth(final Datasource ds) {
         this.ds = ds;
     }
 
