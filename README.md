@@ -49,7 +49,7 @@ public class GammaServer extends HTTPServer {
     }
 }
 
-@WebServlet(name = "SecureApiServlet", urlPatterns = {"/secure/api"})
+@WebServlet(name = "SecureApiServlet", urlPatterns = {"/s/api"})
 public class SecureApiServlet extends HttpServlet {
 
     public SecureApiServlet() {
