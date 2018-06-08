@@ -9,13 +9,17 @@ public class SimpleTokenAuth {
         this.ds = ds;
     }
 
-    public boolean login(final String email, final String password) {
+    public String login(final String email, final String password) {
         try {
             Salt salt = ds.getSalt(email);
             String hashedPassword = hash(password + salt.getSalt());
-            return ds.getHashedPassword(email).equalsIgnoreCase(hashedPassword);
+            if (ds.getHashedPassword(email).equalsIgnoreCase(hashedPassword)) {
+                return ds.getTokenByEmail(email).getToken();
+            } else {
+                return null;
+            }
         } catch (Throwable throwable) {
-            return false;
+            return null;
         }
     }
 
