@@ -43,7 +43,7 @@ public class BetaServer extends HTTPServer {
 ### Simple Token Authentication Mechanism
 ```java
 public class GammaServer extends HTTPServer {
-    public BetaServer() {
+    public GammaServer() {
         // port, path, servlets-package 
         super(Optional.of("9999"), Optional.of("/s/api"), Optional.of("apis"));
     }
